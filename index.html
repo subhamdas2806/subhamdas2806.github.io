@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subham Das — Creative Technologist & Developer</title>
+  <meta name="description" content="Portfolio of Subham Das - Computer Science Student, Developer, and Creative Technologist. Building experiences between code and creativity.">
+  <meta name="keywords" content="Subham Das, Developer, Creative Technologist, Portfolio, Computer Science, Jaipur, CHIP-8 Emulator, Pong AI">
+  <meta name="author" content="Subham Das">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Subham Das — Creative Technologist & Developer">
+  <meta property="og:description" content="Building experiences between code and creativity. Check out my projects and creative coding experiments.">
+  <meta property="og:image" content="assets/avatar.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Subham Das — Creative Technologist & Developer">
+  <meta property="twitter:description" content="Building experiences between code and creativity. Check out my projects and creative coding experiments.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Loading Animation -->
+  <div id="loader" class="loader-wrap">
+    <div class="loader-content">
+      <span class="loader-tag">subham.dev</span>
+      <div class="loader-bar-bg">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <span class="loader-status">Initializing system...</span>
+    </div>
+  </div>
+
+  <!-- Background organic animated shapes -->
+  <div class="bg-gradient-container">
+    <div class="blob blob-purple"></div>
+    <div class="blob blob-magenta"></div>
+    <div class="blob blob-indigo"></div>
+  </div>
+
+  <!-- Main Floating macOS Window -->
+  <main class="mac-window animate-entrance" id="main-window">
+    
+    <!-- Window Header / Title Bar -->
+    <header class="window-header">
+      <div class="window-controls">
+        <span class="dot close" title="Close"></span>
+        <span class="dot minimize" title="Minimize"></span>
+        <span class="dot expand" title="Maximize"></span>
+      </div>
+      
+      <!-- Center Spotlight search pill -->
+      <div class="window-title-pill" id="title-pill" title="Click to search (⌥K)"></div>
+
+      <!-- Theme Switcher -->
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+        <svg class="sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m2.828-9.9a5 5 0 11-7.07 7.07 5 5 0 017.07-7.07z"></path>
+        </svg>
+        <svg class="moon-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Info bar / Top Nav strip -->
+    <nav class="info-bar" aria-label="Information strip">
+      <div class="info-item">
+        <span class="info-label">//portfolio</span>
+        <a href="#" class="info-value">subham.dev</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">//contact</span>
+        <a href="mailto:subhamdas06@gmail.com" class="info-value">subhamdas06@gmail.com</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">//github</span>
+        <a href="https://github.com/subhamdas2806" target="_blank" rel="noopener noreferrer" class="info-value">https://github.com/subhamdas2806</a>
+      </div>
+      <div class="info-item">
+        <span class="info-label">//location</span>
+        <span class="info-value">Jaipur, IN <span class="status-dot" title="Available for opportunities"></span><span id="live-date"></span><span id="live-clock">--:--:-- --</span></span>
+      </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="window-content">
+      
+      <!-- HERO SECTION -->
+      <section class="hero-section" id="hero">
+        <div class="hero-grid">
+          <!-- Profile image container -->
+          <div class="profile-col">
+            <div class="profile-frame-wrap">
+              <img src="assets/avatar.jpg" alt="Subham Das" class="profile-image" id="profile-img">
+            </div>
+          </div>
+
+          <!-- Hero Text -->
+          <div class="text-col">
+            <h1 class="hero-title">&lt;Subham Das&gt;</h1>
+            
+            <div class="subtitle-wrap">
+              <div class="subtitle-line" id="typed-subtitle"></div>
+              <span class="cursor" aria-hidden="true">_</span>
+            </div>
+
+            <p class="micro-text">Building experiences between code and creativity.</p>
+
+            <div class="cta-wrap">
+              <a href="#projects" class="btn btn-primary">View Projects</a>
+              <a href="https://github.com/subhamdas2806" target="_blank" rel="noopener noreferrer" class="btn btn-outline">GitHub</a>
+              <a href="https://www.linkedin.com/in/subhamdas06" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION -->
+      <section class="section-container" id="about">
+        <h2 class="section-header">//about</h2>
+        <div class="about-content">
+          <p class="body-text">hi, i'm subham. i enjoy creating things that exist between engineering and creativity.</p>
+          <p class="body-text">from ai experimentation and retro game projects to landscape photography and interactive interfaces, i love building experiences that feel thoughtful, expressive, and alive.</p>
+          <p class="body-text">currently pursuing b.tech in computer science at nims university jaipur (expected graduation: 2028).</p>
+        </div>
+      </section>
+
+      <!-- SELECTED WORK (PROJECTS) SECTION -->
+      <section class="section-container" id="projects">
+        <h2 class="section-header">//selected work</h2>
+        <div class="projects-stack">
+          
+          <!-- Project 01 -->
+          <article class="project-entry">
+            <div class="project-meta">C++ • Emulator • Systems</div>
+            <div class="project-details">
+              <div class="project-title-box">CHIP-8 Emulator //systems</div>
+              <p class="body-text">Built a complete retro virtual machine from scratch in C++, implementing instruction decoding, memory management, graphics rendering, timers, and ROM execution to recreate classic CHIP-8 games.</p>
+              <ul class="project-bullet-list">
+                <li>Emulator Architecture</li>
+                <li>Opcode Decoding</li>
+                <li>Memory Management</li>
+                <li>Graphics Rendering</li>
+                <li>Input Handling</li>
+                <li>C++</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project 02 -->
+          <article class="project-entry">
+            <div class="project-meta">AI • Game Dev • Neural Net</div>
+            <div class="project-details">
+              <div class="project-title-box">Pong AI //game dev</div>
+              <p class="body-text">Developed an interactive Pong experience where AI agents compete against human input, focusing on gameplay behavior, responsiveness, and real-time decision making.</p>
+              <ul class="project-bullet-list">
+                <li>Artificial Intelligence</li>
+                <li>Neural Networks</li>
+                <li>Gameplay Systems</li>
+                <li>Real-Time Logic</li>
+                <li>UI Design</li>
+                <li>C++</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project 03 -->
+          <article class="project-entry">
+            <div class="project-meta">React • Web3 • Full Stack</div>
+            <div class="project-details">
+              <div class="project-title-box">Credential Verification Platform //web3</div>
+              <p class="body-text">Designed and developed a modern credential verification platform with a clean dashboard experience, secure validation flow, and scalable frontend architecture.</p>
+              <ul class="project-bullet-list">
+                <li>React</li>
+                <li>Web3</li>
+                <li>Authentication</li>
+                <li>Dashboard Design</li>
+                <li>Full-Stack</li>
+                <li>UX</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Project 04 -->
+          <article class="project-entry">
+            <div class="project-meta">Generative AI • UX</div>
+            <div class="project-details">
+              <div class="project-title-box">AI Experiments //generative ai</div>
+              <p class="body-text">Explored experimental AI workflows combining automation, prompt engineering, interactive interfaces, and creative prototyping across multiple concepts.</p>
+              <ul class="project-bullet-list">
+                <li>Generative AI</li>
+                <li>Prompt Engineering</li>
+                <li>Agent Workflows</li>
+                <li>Automation</li>
+                <li>LLM Integration</li>
+                <li>Creative Tech</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- TECH STACK SECTION -->
+      <section class="section-container" id="stack">
+        <h2 class="section-header">//stack</h2>
+        <div class="stack-grid">
+          
+          <!-- Category: Languages -->
+          <div class="stack-category">
+            <h3>Languages</h3>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-icon">C++</span>
+                <span class="stack-name">C++</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">PY</span>
+                <span class="stack-name">Python</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">JS</span>
+                <span class="stack-name">JavaScript</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">TS</span>
+                <span class="stack-name">TypeScript</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category: Frontend -->
+          <div class="stack-category">
+            <h3>Frontend</h3>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-icon">RE</span>
+                <span class="stack-name">React</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">NX</span>
+                <span class="stack-name">Next.js</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">TW</span>
+                <span class="stack-name">Tailwind CSS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category: Backend -->
+          <div class="stack-category">
+            <h3>Backend</h3>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-icon">ND</span>
+                <span class="stack-name">Node.js</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">FL</span>
+                <span class="stack-name">Flask</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category: Tools -->
+          <div class="stack-category">
+            <h3>Tools</h3>
+            <div class="stack-items">
+              <div class="stack-item">
+                <span class="stack-icon">GT</span>
+                <span class="stack-name">Git</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">AW</span>
+                <span class="stack-name">AWS</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">VS</span>
+                <span class="stack-name">VS Code</span>
+              </div>
+              <div class="stack-item">
+                <span class="stack-icon">LX</span>
+                <span class="stack-name">Linux</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- CREATIVE SECTION (OUTSIDE CODE) -->
+      <section class="section-container" id="creative">
+        <h2 class="section-header">//outside code</h2>
+        <div class="creative-split">
+          
+          <!-- Photography Showcase (Left) -->
+          <div class="photography-showcase">
+            <div class="gallery-viewport">
+              <div class="gallery-track" id="gallery-track">
+                <div class="gallery-slide active">
+                  <img src="assets/photo1.jpg" alt="Silhouettes of people fishing on a quiet river bank" class="gallery-img">
+                  <div class="gallery-caption">Silent Anglers — Riverine Silhouette</div>
+                </div>
+                <div class="gallery-slide">
+                  <img src="assets/photo2.jpg" alt="White marble clock tower dome" class="gallery-img">
+                  <div class="gallery-caption">Architectural Symmetry — Marble Dome</div>
+                </div>
+                <div class="gallery-slide">
+                  <img src="assets/photo3.jpg" alt="A lone swimmer in a grassy green waterway" class="gallery-img">
+                  <div class="gallery-caption">The Swimmer — Green Wetlands</div>
+                </div>
+                <div class="gallery-slide">
+                  <img src="assets/photo4.jpg" alt="Birds flying over purple mountains under pink dusk" class="gallery-img">
+                  <div class="gallery-caption">Flight at Dusk — Mountain Valleys</div>
+                </div>
+                <div class="gallery-slide">
+                  <img src="assets/photo5.jpg" alt="Neon-lit boat near palm trees at night" class="gallery-img">
+                  <div class="gallery-caption">Neon Reflections — Evening Shoreline</div>
+                </div>
+              </div>
+            </div>
+            <!-- Gallery Nav Dot Indicators -->
+            <div class="gallery-nav" id="gallery-nav">
+              <button class="gallery-dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="gallery-dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="gallery-dot" data-index="2" aria-label="Slide 3"></button>
+              <button class="gallery-dot" data-index="3" aria-label="Slide 4"></button>
+              <button class="gallery-dot" data-index="4" aria-label="Slide 5"></button>
+            </div>
+          </div>
+
+          <!-- Creative Interests List (Right) -->
+          <div class="creative-interests">
+            <h3>Creative Interests</h3>
+            <ul class="interest-list">
+              <li>
+                <span class="bullet">✦</span>
+                <span class="interest-title">Landscape Photography</span>
+              </li>
+              <li>
+                <span class="bullet">✦</span>
+                <span class="interest-title">Visual Storytelling</span>
+              </li>
+              <li>
+                <span class="bullet">✦</span>
+                <span class="interest-title">UI Exploration</span>
+              </li>
+              <li>
+                <span class="bullet">✦</span>
+                <span class="interest-title">Creative Coding</span>
+              </li>
+              <li>
+                <span class="bullet">✦</span>
+                <span class="interest-title">Interactive Systems</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- EDUCATION SECTION -->
+      <section class="section-container" id="education">
+        <h2 class="section-header">//education</h2>
+        <div class="timeline-container">
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <span class="timeline-date">2024 — 2028</span>
+              <h3>NIMS University Jaipur</h3>
+              <p class="timeline-degree">B.Tech — Computer Science</p>
+              <p class="timeline-desc">Expected Graduation: 2028. Exploring systems programming, machine learning foundations, and modern web architectures.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="section-container" id="connect">
+        <h2 class="section-header">//connect</h2>
+        
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="terminal-title">zsh — guest@subham-dev:~</span>
+          </div>
+          <div class="terminal-body" id="term-body-interactive">
+            <div id="terminal-history">
+              <div class="term-line">
+                <span class="term-prompt">guest@subham-dev:~ $</span> <span class="term-cmd" id="terminal-type-cmd"></span>
+              </div>
+              <div class="term-output" id="terminal-links-output" style="opacity: 0; transition: opacity 0.5s ease;">
+                <div class="link-row">
+                  <span class="link-label">LinkedIn:</span>
+                  <a href="https://www.linkedin.com/in/subhamdas06" target="_blank" rel="noopener noreferrer" class="term-link">https://www.linkedin.com/in/subhamdas06</a>
+                </div>
+                <div class="link-row">
+                  <span class="link-label">GitHub:</span>
+                  <a href="https://github.com/subhamdas2806" target="_blank" rel="noopener noreferrer" class="term-link">https://github.com/subhamdas2806</a>
+                </div>
+                <div class="link-row">
+                  <span class="link-label">Email:</span>
+                  <a href="mailto:subhamdas06@gmail.com" class="term-link">subhamdas06@gmail.com</a>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Interactive Line (initially hidden, shown after animation) -->
+            <div class="term-interactive-line" id="term-input-line" style="display: none;">
+              <span class="term-prompt">guest@subham-dev:~ $</span>
+              <div class="term-input-container">
+                <span id="term-typed-input"></span><span class="term-cursor">█</span>
+              </div>
+              <input type="text" id="term-real-input" autocomplete="off" spellcheck="false" aria-label="Terminal Input">
+            </div>
+            
+            <div class="term-actions">
+              <button class="term-btn" id="copy-email-btn">
+                <span class="btn-text">Copy Email</span>
+              </button>
+              <a href="https://github.com/subhamdas2806" target="_blank" rel="noopener noreferrer" class="term-btn">
+                <span>Open GitHub</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- macOS Window Footer -->
+    <footer class="window-footer">
+      <div class="footer-left">
+        <span>Designed & Built by Subham Das</span>
+      </div>
+      <div class="footer-right">
+        <span>Code × Creativity</span>
+      </div>
+    </footer>
+  </main>
+
+  <dialog id="cmd-menu" class="cmd-menu-dialog" aria-modal="true" aria-labelledby="cmd-title">
+    <div class="cmd-menu-container">
+      <div class="cmd-menu-header">
+        <span class="cmd-icon">⌨</span>
+        <input type="text" id="cmd-search" class="cmd-search-input" placeholder="Search, or type '/' for terminal (e.g. /help)..." autocomplete="off" spellcheck="false">
+        <button class="cmd-close-btn" id="cmd-close" aria-label="Close menu">Esc</button>
+      </div>
+      
+      <div class="cmd-menu-wrapper">
+        <div class="cmd-menu-left">
+          <!-- Terminal Mode Panel (hidden by default) -->
+          <div class="cmd-terminal-panel" id="cmd-term-panel" style="display: none;">
+            <div id="cmd-term-output"></div>
+          </div>
+
+          <div class="cmd-menu-list" id="cmd-list" role="listbox">
+            <!-- Navigation commands -->
+            <div class="cmd-group-label">Navigation</div>
+            <div class="cmd-item active" role="option" data-action="scroll" data-target="#hero" data-shortcut="⌥H" data-summary="Scroll to the hero section and social links.">
+              <span class="cmd-name">Go to Hero</span>
+              <span class="cmd-shortcut">⌥ H</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="scroll" data-target="#about" data-shortcut="⌥A" data-summary="View the personal bio, location, and education details.">
+              <span class="cmd-name">Go to About</span>
+              <span class="cmd-shortcut">⌥ A</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="scroll" data-target="#projects" data-shortcut="⌥W" data-summary="Browse key systems, AI, web3, and web projects.">
+              <span class="cmd-name">Go to Selected Work</span>
+              <span class="cmd-shortcut">⌥ W</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="scroll" data-target="#stack" data-shortcut="⌥S" data-summary="View list of programming languages, tools, and platforms.">
+              <span class="cmd-name">Go to Stack</span>
+              <span class="cmd-shortcut">⌥ S</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="scroll" data-target="#creative" data-shortcut="⌥O" data-summary="Explore creative photography and outside-code interests.">
+              <span class="cmd-name">Go to Outside Code</span>
+              <span class="cmd-shortcut">⌥ O</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="scroll" data-target="#education" data-shortcut="⌥E" data-summary="Review university credentials and B.Tech degree progress.">
+              <span class="cmd-name">Go to Education</span>
+              <span class="cmd-shortcut">⌥ E</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="scroll" data-target="#connect" data-shortcut="⌥C" data-summary="Interact with contact links and copy email details.">
+              <span class="cmd-name">Go to Connect</span>
+              <span class="cmd-shortcut">⌥ C</span>
+            </div>
+            
+            <!-- Utility commands -->
+            <div class="cmd-group-label">Utilities</div>
+            <div class="cmd-item" role="option" data-action="theme" data-shortcut="⌥T" data-summary="Toggle the website theme between macOS Silver and Solid Slate.">
+              <span class="cmd-name">Toggle Dark / Light Theme</span>
+              <span class="cmd-shortcut">⌥ T</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="wallpaper" data-shortcut="⌥P" data-summary="Cycle through the desktop wallpaper gradient options.">
+              <span class="cmd-name">Cycle Desktop Wallpaper</span>
+              <span class="cmd-shortcut">⌥ P</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="copy" data-shortcut="⌥M" data-summary="Copy 'subhamdas06@gmail.com' to your clipboard buffer.">
+              <span class="cmd-name">Copy Email Address</span>
+              <span class="cmd-shortcut">⌥ M</span>
+            </div>
+            <div class="cmd-item" role="option" data-action="github" data-shortcut="⌥G" data-summary="Open the Github developer profile in a new tab.">
+              <span class="cmd-name">Open Github Profile</span>
+              <span class="cmd-shortcut">⌥ G</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cmd-menu-right" id="cmd-preview-pane">
+          <div class="preview-placeholder">
+            <div class="preview-logo">⌘</div>
+            <div class="preview-title">Spotlight Search</div>
+            <div class="preview-desc">Type to search the portfolio or execute shell commands directly using the <code>/</code> prefix (e.g. <code>/neofetch</code>).</div>
+          </div>
+        </div>
+      </div>
+      <div class="cmd-menu-footer">
+        <span>Use <kbd>↑</kbd><kbd>↓</kbd> to navigate, <kbd>Enter</kbd> to select, <kbd>Esc</kbd> to close.</span>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Offline Overlay System -->
+  <div id="offline-screen" class="offline-wrap" style="display: none;">
+    <div class="offline-content">
+      <div class="offline-logo"></div>
+      <div class="offline-terminal" id="offline-terminal">
+        <div class="offline-line">// SYSTEM CONSOLE SHUTDOWN INITIALIZED...</div>
+        <div class="offline-line">// UPTIME: <span id="shutdown-uptime">--</span></div>
+        <div class="offline-line">// STATUS: SYSTEM ONLINE BUT SHELL TERMINATED.</div>
+        <div class="offline-line">// CLICK BELOW TO INITIALIZE CORE DRIVERS.</div>
+      </div>
+      <button class="btn btn-primary" id="reboot-btn">Reboot System</button>
+    </div>
+  </div>
+
+  <!-- Toast notification system -->
+  <div id="toast-notification" class="toast-wrap" style="display: none;"></div>
+
+  <!-- Keyboard shortcut tooltip -->
+  <div class="keyboard-hint">
+    Press <kbd class="hint-key">Option/Alt + K</kbd> to search or type commands
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
