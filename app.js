@@ -272,25 +272,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cmdClean === '') {
       termOutput.innerHTML = `<span class="cmd-term-prompt">guest@subham-dev:~ $</span> <span class="cmd-term-cmd">/</span>\n\n` +
         `<span class="cmd-term-text">Available commands:\n` +
-        `  /help     - list available commands\n` +
-        `  /about    - short bio of subham\n` +
-        `  /projects - summaries of key projects\n` +
-        `  /theme    - toggle light/dark theme\n` +
-        `  /clear    - clear console and return to search</span>`;
+        `  /help       - list available commands\n` +
+        `  /about      - short bio of subham\n` +
+        `  /experience - summaries of work history\n` +
+        `  /projects   - summaries of key projects\n` +
+        `  /theme      - toggle light/dark theme\n` +
+        `  /clear      - clear console and return to search</span>`;
       return;
     }
 
     if (cmdClean === 'help') {
       termOutput.innerHTML = `<span class="cmd-term-prompt">guest@subham-dev:~ $</span> <span class="cmd-term-cmd">/help</span>\n\n` +
         `<span class="cmd-term-text">Commands list:\n` +
-        `  /about     - view subham's profile summary\n` +
-        `  /projects  - view project names & tags\n` +
-        `  /theme     - switch system theme\n` +
-        `  /clear     - return to search menu</span>`;
+        `  /about      - view subham's profile summary\n` +
+        `  /experience - view professional work history\n` +
+        `  /projects   - view project names & tags\n` +
+        `  /theme      - switch system theme\n` +
+        `  /clear      - return to search menu</span>`;
     } else if (cmdClean === 'about') {
       termOutput.innerHTML = `<span class="cmd-term-prompt">guest@subham-dev:~ $</span> <span class="cmd-term-cmd">/about</span>\n\n` +
         `<span class="cmd-term-text">subham das — computer science student at NIMS university jaipur.\n` +
         `building experiences between code and creativity. loves systems, emulators, web3 and visual design.</span>`;
+    } else if (cmdClean === 'experience') {
+      termOutput.innerHTML = `<span class="cmd-term-prompt">guest@subham-dev:~ $</span> <span class="cmd-term-cmd">/experience</span>\n\n` +
+        `<span class="cmd-term-text">professional experience:\n` +
+        `  - AI Web Development Intern @ InAmigos Foundation (IAF) (Jun 2026 - Present)\n` +
+        `  - Artificial Intelligence Developer @ Fiverr (Mar 2023 - Jun 2024)</span>`;
     } else if (cmdClean === 'projects') {
       termOutput.innerHTML = `<span class="cmd-term-prompt">guest@subham-dev:~ $</span> <span class="cmd-term-cmd">/projects</span>\n\n` +
         `<span class="cmd-term-text">project 01: chip-8 emulator (c++ / emulators)\n` +
@@ -487,6 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetMap = {
         'h': '#hero',
         'a': '#about',
+        'x': '#experience',
         'w': '#projects',
         's': '#stack',
         'o': '#creative',
@@ -934,16 +942,17 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (cleanCmd === 'help') {
         outputBlock.innerHTML = `Available commands:
-  neofetch  - displays system specs & ASCII profile banner
-  about     - prints personal details & credentials bio
-  projects  - lists recent tech project summaries & stacks
-  skills    - lists development language expertise
-  theme     - toggles dark/light desktop themes
-  wallpaper - cycles through Sonoma, Space, and Monterey waves
-  clear     - clears the terminal history log
-  linkedin  - opens linkedin profile in new tab
-  github    - opens github profile in new tab
-  email     - copies email address to clipboard`;
+  neofetch   - displays system specs & ASCII profile banner
+  about      - prints personal details & credentials bio
+  experience - lists professional work experience & internships
+  projects   - lists recent tech project summaries & stacks
+  skills     - lists development language expertise
+  theme      - toggles dark/light desktop themes
+  wallpaper  - cycles through Sonoma, Space, and Monterey waves
+  clear      - clears the terminal history log
+  linkedin   - opens linkedin profile in new tab
+  github     - opens github profile in new tab
+  email      - copies email address to clipboard`;
       } else if (cleanCmd === 'neofetch') {
         const uptimeMs = new Date() - pageLoadTime;
         const uptimeSec = Math.floor(uptimeMs / 1000);
@@ -981,6 +990,15 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (cleanCmd === 'about') {
         outputBlock.textContent = `subham das — computer science student at NIMS university jaipur (grad 2028).
 building experiences between code and creativity. interested in systems, emulators, and dynamic designs.`;
+      } else if (cleanCmd === 'experience') {
+        outputBlock.innerHTML = `- AI Web Development Intern @ InAmigos Foundation (IAF) (Jun 2026 - Present)
+  Internship • Remote
+  Selected for an AI Web Development Internship through Internshala. Excited to gain hands-on experience and build real-world projects.
+
+- Artificial Intelligence Developer @ Fiverr (Mar 2023 - Jun 2024)
+  Freelance • Remote
+  Created and customized Stable Diffusion models for clients on Fiverr, helping bring creative ideas to life through generative AI.
+  Skills: Stable Diffusion, ComfyUI`;
       } else if (cleanCmd === 'projects') {
         outputBlock.textContent = `- CHIP-8 Emulator (C++ • Opcode Decoding • Systems)
 - Pong AI (C++ • Neural Networks • Game Dev)

@@ -584,6 +584,31 @@ a.info-value:hover {
   font-size: 0.45rem;
 }
 
+/* Experience Bullet List */
+.experience-bullet-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.experience-bullet-list li {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: start;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.experience-bullet-list li::before {
+  content: '●';
+  color: var(--text-secondary);
+  font-size: 0.45rem;
+  margin-top: 4px;
+}
+
 /* ==========================================================================
    TECH STACK SECTION
    ========================================================================== */
