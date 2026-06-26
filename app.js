@@ -720,8 +720,9 @@ document.addEventListener('DOMContentLoaded', () => {
       startY = clientY;
       
       const rect = mainWindow.getBoundingClientRect();
-      initialLeft = rect.left;
-      initialTop = rect.top;
+      const zoomFactor = 0.9;
+      initialLeft = rect.left / zoomFactor;
+      initialTop = rect.top / zoomFactor;
       
       mainWindow.style.position = 'absolute';
       mainWindow.style.margin = '0';
