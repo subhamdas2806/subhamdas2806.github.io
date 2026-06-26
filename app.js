@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. COPY EMAIL FUNCTIONALITY
   // ==========================================================================
   const copyEmailBtn = document.getElementById('copy-email-btn');
-  const emailText = 'subhamdas06@gmail.com';
+  const emailText = 'dassubham7756@gmail.com';
 
   if (copyEmailBtn) {
     copyEmailBtn.addEventListener('click', copyEmailToClipboard);
@@ -643,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="link-row">
               <span class="link-label">Email:</span>
-              <a href="mailto:subhamdas06@gmail.com" class="term-link">subhamdas06@gmail.com</a>
+              <a href="mailto:dassubham7756@gmail.com" class="term-link">dassubham7756@gmail.com</a>
             </div>
           </div>
         `;
