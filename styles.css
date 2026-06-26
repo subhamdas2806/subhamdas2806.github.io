@@ -2001,17 +2001,17 @@ a.info-value:hover {
 
 /* Sibling window glassmorphism styles */
 .bg-gradient-container.wp-glass ~ .mac-window {
-  background: rgba(15, 15, 18, 0.55) !important; /* Dark tinted frosted glass */
+  background: rgba(15, 15, 18, 0.65) !important; /* Dark tinted frosted glass (slightly darker for contrast) */
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  backdrop-filter: blur(35px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(35px) saturate(140%) !important;
+  backdrop-filter: blur(48px) saturate(140%) !important; /* Increased blur for stronger frosted effect */
+  -webkit-backdrop-filter: blur(48px) saturate(140%) !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 
               inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Light mode white-tinted frosted glass */
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window {
-  background: rgba(255, 255, 255, 0.4) !important; /* White-tinted frosted glass */
+  background: rgba(255, 255, 255, 0.52) !important; /* White-tinted frosted glass (slightly more opaque for contrast) */
   border: 1px solid rgba(255, 255, 255, 0.35) !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15), 
               inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
@@ -2065,14 +2065,14 @@ a.info-value:hover {
 
 /* Sibling Spotlight Dialog glassmorphism styles */
 .bg-gradient-container.wp-glass ~ .cmd-menu-dialog .cmd-menu-container {
-  background: rgba(15, 15, 18, 0.55) !important;
-  backdrop-filter: blur(25px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(25px) saturate(140%) !important;
+  background: rgba(15, 15, 18, 0.65) !important;
+  backdrop-filter: blur(38px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(38px) saturate(140%) !important;
   border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .cmd-menu-dialog .cmd-menu-container {
-  background: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
   border-color: rgba(255, 255, 255, 0.3) !important;
   
   /* Overrides for text color to maximize legibility and saturation */
