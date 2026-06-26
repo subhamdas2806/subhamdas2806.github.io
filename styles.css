@@ -453,6 +453,23 @@ a.info-value:hover {
   50% { color: var(--text-primary) }
 }
 
+.foundation-link-wrap {
+  margin-bottom: 22px;
+}
+
+.foundation-link {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-bottom: 1.5px dashed var(--text-secondary);
+  transition: all var(--transition-speed) var(--transition-smooth);
+}
+
+.foundation-link:hover {
+  color: var(--text-primary);
+  border-bottom-color: var(--text-primary);
+}
+
 .micro-text {
   display: none; /* Removed for screenshot aesthetic match */
 }
