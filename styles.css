@@ -382,6 +382,13 @@ a.info-value:hover {
   max-height: calc(100vh - 250px);
   overflow-y: auto;
   background: var(--window-bg);
+  flex: 1;
+  min-height: 0;
+}
+
+/* If inline height is set during resize, clear max-height restriction */
+.mac-window[style*="height"] .window-content {
+  max-height: none;
 }
 
 .section-container {
@@ -1063,6 +1070,46 @@ a.info-value:hover {
 
 
 /* ==========================================================================
+   WINDOW RESIZE HANDLE (LEGACY MACOS STYLE)
+   ========================================================================== */
+
+.window-resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  cursor: se-resize;
+  z-index: 30;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 3px;
+  pointer-events: auto;
+}
+
+.window-resize-handle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid var(--text-secondary);
+  opacity: 0.3;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.window-resize-handle:hover::after {
+  opacity: 0.8;
+  border-color: var(--text-primary);
+}
+
+@media (max-width: 900px) {
+  .window-resize-handle {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
    SPOTLIGHT SEARCH MENU OVERLAY (DIALOG)
    ========================================================================== */
 
@@ -1519,6 +1566,10 @@ a.info-value:hover {
               height 0.4s var(--transition-smooth),
               max-width 0.4s var(--transition-smooth),
               border-radius 0.4s var(--transition-smooth);
+}
+
+.mac-window.is-resizing {
+  transition: none !important;
 }
 
 .mac-window.minimized {

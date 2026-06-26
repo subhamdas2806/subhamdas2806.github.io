@@ -611,6 +611,11 @@ document.addEventListener('DOMContentLoaded', () => {
       mainWindow.classList.remove('closed');
       mainWindow.classList.add('animate-entrance');
       
+      // Reset window sizing on reboot
+      mainWindow.style.width = '';
+      mainWindow.style.height = '';
+      mainWindow.style.maxWidth = '';
+      
       // Reset window scroll position on reboot
       const winContent = document.querySelector('.window-content');
       if (winContent) winContent.scrollTop = 0;
@@ -779,8 +784,87 @@ document.addEventListener('DOMContentLoaded', () => {
       mainWindow.style.margin = '';
       mainWindow.style.left = '';
       mainWindow.style.top = '';
+      mainWindow.style.width = '';
+      mainWindow.style.height = '';
+      mainWindow.style.maxWidth = '';
     }
   });
+
+  // ==========================================================================
+  // 10.1 RESIZABLE WINDOW (DESKTOP VIEWPORTS ONLY)
+  // ==========================================================================
+  const resizeHandle = document.getElementById('window-resize');
+  if (mainWindow && resizeHandle) {
+    let isResizing = false;
+    let startX, startY;
+    let startWidth, startHeight;
+    const zoomFactor = 0.9;
+
+    const isResizable = () => window.innerWidth > 900 && !mainWindow.classList.contains('maximized');
+
+    resizeHandle.addEventListener('mousedown', resizeStart);
+    resizeHandle.addEventListener('touchstart', resizeStart, { passive: true });
+
+    function resizeStart(e) {
+      if (!isResizable()) return;
+      e.stopPropagation(); // Prevent dragging parent window
+      e.preventDefault();  // Prevent text selection during resize
+
+      isResizing = true;
+      mainWindow.classList.add('is-resizing');
+      
+      const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+
+      startX = clientX;
+      startY = clientY;
+
+      const rect = mainWindow.getBoundingClientRect();
+      startWidth = rect.width / zoomFactor;
+      startHeight = rect.height / zoomFactor;
+
+      document.addEventListener('mousemove', resizeMove);
+      document.addEventListener('mouseup', resizeEnd);
+      document.addEventListener('touchmove', resizeMove, { passive: false });
+      document.addEventListener('touchend', resizeEnd);
+    }
+
+    function resizeMove(e) {
+      if (!isResizing) return;
+      if (e.type === 'touchmove') e.preventDefault();
+
+      const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+      const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+
+      const dx = clientX - startX;
+      const dy = clientY - startY;
+
+      let newWidth = startWidth + dx / zoomFactor;
+      let newHeight = startHeight + dy / zoomFactor;
+
+      const minWidth = 450;
+      const minHeight = 350;
+      const maxWidth = window.innerWidth / zoomFactor;
+      const maxHeight = window.innerHeight / zoomFactor;
+
+      newWidth = Math.max(minWidth, Math.min(maxWidth, newWidth));
+      newHeight = Math.max(minHeight, Math.min(maxHeight, newHeight));
+
+      mainWindow.style.width = `${newWidth}px`;
+      mainWindow.style.height = `${newHeight}px`;
+      mainWindow.style.maxWidth = 'none';
+    }
+
+    function resizeEnd() {
+      isResizing = false;
+      mainWindow.classList.remove('is-resizing');
+      
+      document.removeEventListener('mousemove', resizeMove);
+      document.removeEventListener('mouseup', resizeEnd);
+      document.removeEventListener('touchmove', resizeMove);
+      document.removeEventListener('touchend', resizeEnd);
+    }
+  }
 
 
   // ==========================================================================
