@@ -709,7 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function dragStart(e) {
       if (!isDraggable()) return;
       
-      if (e.target.closest('.window-controls') || e.target.closest('.theme-toggle-btn') || e.target.closest('#title-pill')) {
+      if (e.target.closest('.window-controls') || e.target.closest('.header-actions') || e.target.closest('#title-pill')) {
         return;
       }
       
@@ -807,6 +807,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (triggerToast) {
       showToast(`Desktop Wallpaper: ${wallpapers[idx].name}`);
     }
+  }
+
+  // Hook wallpaper switcher button
+  const wallpaperToggle = document.getElementById('wallpaper-toggle');
+  if (wallpaperToggle) {
+    wallpaperToggle.addEventListener('click', () => {
+      currentWpIdx = (currentWpIdx + 1) % wallpapers.length;
+      applyWallpaper(currentWpIdx, true);
+    });
   }
 
 

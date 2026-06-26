@@ -261,6 +261,43 @@ body::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.15);
 }
 
+/* Header Actions Group */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 25;
+}
+
+/* Wallpaper Switcher Button */
+.wallpaper-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-speed);
+}
+
+.wallpaper-toggle-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .wallpaper-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.wallpaper-toggle-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
 /* Theme Toggle */
 .theme-toggle-btn {
   background: none;
