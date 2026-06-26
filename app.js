@@ -880,9 +880,18 @@ document.addEventListener('DOMContentLoaded', () => {
     { class: 'wp-glass', name: 'Aerial Beach (Glassmorphism)' }
   ];
 
-  // Wallpaper persistence
+  // Wallpaper persistence with version check to migration-force the new default glass theme for returning users
   let cachedWp = localStorage.getItem('portfolio-wp-idx');
-  let currentWpIdx = cachedWp !== null ? parseInt(cachedWp) : 4;
+  let wpVersion = localStorage.getItem('portfolio-wp-version');
+  let currentWpIdx;
+
+  if (wpVersion !== '2.0' || cachedWp === null) {
+    currentWpIdx = 4; // Force Aerial Beach (Glassmorphism) as the new default
+    localStorage.setItem('portfolio-wp-idx', 4);
+    localStorage.setItem('portfolio-wp-version', '2.0');
+  } else {
+    currentWpIdx = parseInt(cachedWp);
+  }
   applyWallpaper(currentWpIdx, false);
 
   function applyWallpaper(idx, triggerToast) {
