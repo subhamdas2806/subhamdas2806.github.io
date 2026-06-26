@@ -645,6 +645,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <span class="link-label">Email:</span>
               <a href="mailto:dassubham7756@gmail.com" class="term-link">dassubham7756@gmail.com</a>
             </div>
+            <div class="link-row" style="margin-top: 14px; color: var(--text-secondary); opacity: 0.85;">
+              <span>💡 Type 'help' at the prompt below to list available interactive commands.</span>
+            </div>
           </div>
         `;
       }
