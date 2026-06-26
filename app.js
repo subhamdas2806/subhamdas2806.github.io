@@ -118,6 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   const slides = document.querySelectorAll('.gallery-slide');
   const dots = document.querySelectorAll('.gallery-dot');
+  const prevBtn = document.getElementById('gallery-prev');
+  const nextBtn = document.getElementById('gallery-next');
   let currentSlide = 0;
   let slideInterval;
 
@@ -148,6 +150,24 @@ document.addEventListener('DOMContentLoaded', () => {
       startSlideShow();
     });
   });
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const prevIdx = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prevIdx);
+      startSlideShow();
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const nextIdx = (currentSlide + 1) % slides.length;
+      showSlide(nextIdx);
+      startSlideShow();
+    });
+  }
 
   startSlideShow();
 

@@ -743,17 +743,18 @@ a.info-value:hover {
 
 /* Photo Gallery Left */
 .photography-showcase {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   overflow: hidden;
-  padding: 8px;
+  padding: 0;
+  position: relative;
 }
 
 .gallery-viewport {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
   position: relative;
 }
@@ -798,12 +799,63 @@ a.info-value:hover {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  padding: 16px 12px 10px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+  padding: 24px 16px 12px;
   color: #fff;
   font-size: 0.75rem;
   z-index: 5;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Nav Arrows */
+.gallery-prev-btn,
+.gallery-next-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.5rem;
+  font-family: inherit;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+  padding-bottom: 3px;
+}
+
+.gallery-prev-btn {
+  left: 14px;
+}
+
+.gallery-next-btn {
+  right: 14px;
+}
+
+.gallery-prev-btn:hover,
+.gallery-next-btn:hover {
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.gallery-prev-btn:active,
+.gallery-next-btn:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 /* Dot Nav */
@@ -812,6 +864,9 @@ a.info-value:hover {
   justify-content: center;
   gap: 6px;
   margin-top: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .gallery-dot {
@@ -828,6 +883,20 @@ a.info-value:hover {
   background: var(--text-primary);
   width: 12px;
   border-radius: 3px;
+}
+
+/* Hover Show Controls System */
+.photography-showcase:hover .gallery-caption,
+.photography-showcase:hover .gallery-prev-btn,
+.photography-showcase:hover .gallery-next-btn,
+.photography-showcase:hover .gallery-nav {
+  opacity: 1;
+}
+
+.photography-showcase:hover .gallery-prev-btn,
+.photography-showcase:hover .gallery-next-btn,
+.photography-showcase:hover .gallery-nav {
+  pointer-events: auto;
 }
 
 /* Interests List Right */
@@ -2036,9 +2105,8 @@ a.info-value:hover {
   border-color: rgba(255, 255, 255, 0.2) !important;
 }
 
-/* Sub-card styling override (Frosted Categories, photo showcase, terminal header) */
+/* Sub-card styling override (Frosted Categories, terminal header) */
 .bg-gradient-container.wp-glass ~ .mac-window .stack-category,
-.bg-gradient-container.wp-glass ~ .mac-window .photography-showcase,
 .bg-gradient-container.wp-glass ~ .mac-window .terminal-header {
   background: rgba(255, 255, 255, 0.06) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
@@ -2047,7 +2115,6 @@ a.info-value:hover {
 }
 
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .stack-category,
-[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .photography-showcase,
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .terminal-header {
   background: rgba(0, 0, 0, 0.04) !important;
   border-color: rgba(0, 0, 0, 0.08) !important;
