@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const htmlElement = document.documentElement;
 
-  const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+  const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
   htmlElement.setAttribute('data-theme', savedTheme);
 
   if (themeToggle) {
