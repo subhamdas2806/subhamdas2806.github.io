@@ -1054,6 +1054,7 @@ a.info-value:hover {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  color: var(--text-primary);
 }
 
 [data-theme="light"] .cmd-menu-container {
@@ -1121,6 +1122,7 @@ a.info-value:hover {
   cursor: pointer;
   transition: all 0.1s ease;
   margin-bottom: 1px;
+  color: var(--text-primary);
 }
 
 .cmd-item:hover, .cmd-item.active {
