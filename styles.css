@@ -376,7 +376,7 @@ a.info-value:hover {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: 160px 1fr;
   gap: 40px;
   align-items: center;
 }
@@ -388,8 +388,8 @@ a.info-value:hover {
 }
 
 .profile-frame-wrap {
-  width: 150px;
-  height: 150px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
   border: 1.5px solid var(--text-secondary);
   overflow: hidden;
@@ -422,7 +422,7 @@ a.info-value:hover {
 }
 
 .hero-title {
-  font-size: 2.5rem;
+  font-size: 3.2rem;
   font-weight: normal;
   letter-spacing: -0.5px;
   color: var(--text-primary);
@@ -432,17 +432,17 @@ a.info-value:hover {
 .subtitle-wrap {
   display: flex;
   align-items: center;
-  height: 20px;
+  height: 30px;
   margin-bottom: 20px;
 }
 
 .subtitle-line {
-  font-size: 0.9rem;
+  font-size: 1.3rem;
   color: var(--text-secondary);
 }
 
 .cursor {
-  font-size: 0.95rem;
+  font-size: 1.45rem;
   color: var(--text-primary);
   animation: blink 1s step-end infinite;
   margin-left: 2px;
@@ -1313,6 +1313,19 @@ a.info-value:hover {
 @media (max-width: 600px) {
   .hero-title {
     font-size: 1.8rem;
+  }
+  
+  .subtitle-wrap {
+    height: 20px;
+    margin-bottom: 16px;
+  }
+  
+  .subtitle-line {
+    font-size: 0.95rem;
+  }
+  
+  .cursor {
+    font-size: 1.05rem;
   }
   
   .term-actions {
