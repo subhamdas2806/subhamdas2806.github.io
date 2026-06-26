@@ -34,6 +34,9 @@
   --shadow-window: 0 50px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
   --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.15);
   --shadow-spotlight: 0 30px 60px rgba(0, 0, 0, 0.6);
+  
+  /* Terminal card background */
+  --terminal-bg: rgba(0, 0, 0, 0.25);
 }
 
 /* Light Mode Theme Variables (Frosted Silver) */
@@ -44,8 +47,8 @@
   --header-bg: #d4d4d6;
   
   --text-primary: #1d1d1f;
-  --text-secondary: #5e5e62;
-  --text-muted: #8e8e93;
+  --text-secondary: #3c3c40; /* Darker gray for better readability */
+  --text-muted: #636366; /* Darker muted text for high contrast */
   
   --accent-color: #0071e3;
   --accent-secondary: #0077ed;
@@ -61,6 +64,9 @@
   --shadow-window: 0 50px 100px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.05) inset;
   --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.02);
   --shadow-spotlight: 0 30px 60px rgba(0, 0, 0, 0.15);
+  
+  /* Terminal card background */
+  --terminal-bg: rgba(0, 0, 0, 0.03);
 }
 
 /* ==========================================================================
@@ -95,23 +101,13 @@ body {
               color 0.4s var(--transition-smooth);
 }
 
-/* Scrollbars */
-.window-content::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  width: 8px;
+/* Hide scrollbars globally but preserve scrolling functionality */
+::-webkit-scrollbar {
+  display: none;
 }
-.window-content::-webkit-scrollbar-track,
-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-.window-content::-webkit-scrollbar-thumb,
-body::-webkit-scrollbar-thumb {
-  background: rgba(120, 120, 120, 0.2);
-  border-radius: 10px;
-}
-.window-content::-webkit-scrollbar-thumb:hover,
-body::-webkit-scrollbar-thumb:hover {
-  background: rgba(120, 120, 120, 0.4);
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 /* ==========================================================================
@@ -956,7 +952,7 @@ a.info-value:hover {
   border-radius: 6px;
   border: 1px solid var(--window-border);
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.2);
+  background: var(--terminal-bg);
 }
 
 .terminal-header {
@@ -1973,8 +1969,141 @@ a.info-value:hover {
 
 [data-theme="light"] .bg-gradient-container.wp-matrix {
   background: radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.03) 0%, transparent 70%),
-              #f0f4f1;
+  #f0f4f1;
 }
+
+/* Glassmorphism Beach Wallpaper & Video Background */
+.bg-gradient-container.wp-glass {
+  background: #000;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.bg-gradient-container.wp-glass .bg-video {
+  opacity: 1;
+}
+
+/* Hide background blobs when in glass video mode */
+.bg-gradient-container.wp-glass .blob {
+  opacity: 0;
+}
+
+/* Sibling window glassmorphism styles */
+.bg-gradient-container.wp-glass ~ .mac-window {
+  background: rgba(15, 15, 18, 0.55) !important; /* Dark tinted frosted glass */
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(35px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(35px) saturate(140%) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Light mode white-tinted frosted glass */
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window {
+  background: rgba(255, 255, 255, 0.4) !important; /* White-tinted frosted glass */
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15), 
+              inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+              
+  /* Overrides for text color inside the glass window to maximize legibility and saturation */
+  --text-primary: #000000 !important;
+  --text-secondary: #111112 !important;
+  --text-muted: #3a3a3c !important;
+}
+
+/* Transparent overlays inside the glass window */
+.bg-gradient-container.wp-glass ~ .mac-window .window-header,
+.bg-gradient-container.wp-glass ~ .mac-window .info-bar,
+.bg-gradient-container.wp-glass ~ .mac-window .window-content {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .window-header,
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .info-bar,
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .window-content {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Sub-card styling override (Frosted Categories, photo showcase, terminal header) */
+.bg-gradient-container.wp-glass ~ .mac-window .stack-category,
+.bg-gradient-container.wp-glass ~ .mac-window .photography-showcase,
+.bg-gradient-container.wp-glass ~ .mac-window .terminal-header {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .stack-category,
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .photography-showcase,
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .terminal-header {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Mute info labels and make text stand out on bright background */
+.bg-gradient-container.wp-glass ~ .mac-window .info-label {
+  color: var(--text-secondary);
+  opacity: 0.9;
+}
+
+.bg-gradient-container.wp-glass ~ .mac-window .info-value {
+  color: var(--text-primary) !important;
+}
+
+/* Sibling Spotlight Dialog glassmorphism styles */
+.bg-gradient-container.wp-glass ~ .cmd-menu-dialog .cmd-menu-container {
+  background: rgba(15, 15, 18, 0.55) !important;
+  backdrop-filter: blur(25px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(25px) saturate(140%) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .cmd-menu-dialog .cmd-menu-container {
+  background: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  
+  /* Overrides for text color to maximize legibility and saturation */
+  --text-primary: #000000 !important;
+  --text-secondary: #111112 !important;
+  --text-muted: #3a3a3c !important;
+}
+
+/* Sub-card & Terminal styling overrides when glassmorphism is active */
+.bg-gradient-container.wp-glass ~ .mac-window .terminal-card {
+  background: rgba(0, 0, 0, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .terminal-card {
+  background: rgba(255, 255, 255, 0.45) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .term-btn {
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .info-label {
+  color: var(--text-secondary) !important;
+  opacity: 1 !important;
+}
+
+
 
 /* ==========================================================================
    INTERACTIVE BASH TERMINAL EMBED

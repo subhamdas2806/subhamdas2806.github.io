@@ -876,18 +876,37 @@ document.addEventListener('DOMContentLoaded', () => {
     { class: 'wp-monterey', name: 'Monterey Wave' },
     { class: 'wp-sonoma', name: 'Sonoma Aurora' },
     { class: 'wp-space', name: 'Deep Space' },
-    { class: 'wp-matrix', name: 'Matrix Terminal' }
+    { class: 'wp-matrix', name: 'Matrix Terminal' },
+    { class: 'wp-glass', name: 'Aerial Beach (Glassmorphism)' }
   ];
 
   // Wallpaper persistence
-  let currentWpIdx = parseInt(localStorage.getItem('portfolio-wp-idx')) || 0;
+  let cachedWp = localStorage.getItem('portfolio-wp-idx');
+  let currentWpIdx = cachedWp !== null ? parseInt(cachedWp) : 4;
   applyWallpaper(currentWpIdx, false);
 
   function applyWallpaper(idx, triggerToast) {
     if (!bgContainer) return;
+    
+    // Safety check for index out of bounds
+    if (idx >= wallpapers.length) {
+      idx = 0;
+    }
+    
     wallpapers.forEach(wp => bgContainer.classList.remove(wp.class));
     bgContainer.classList.add(wallpapers[idx].class);
     localStorage.setItem('portfolio-wp-idx', idx);
+    
+    // Manage background video play/pause to conserve resources
+    const bgVideo = document.getElementById('bg-video');
+    if (bgVideo) {
+      if (wallpapers[idx].class === 'wp-glass') {
+        bgVideo.play().catch(err => console.log('Autoplay blocked or video loading failed:', err));
+      } else {
+        bgVideo.pause();
+      }
+    }
+    
     if (triggerToast) {
       showToast(`Desktop Wallpaper: ${wallpapers[idx].name}`);
     }
@@ -1054,7 +1073,7 @@ document.addEventListener('DOMContentLoaded', () => {
   projects      - lists recent tech project summaries & stacks
   skills        - lists development language expertise
   theme         - toggles dark/light desktop themes
-  wallpaper     - cycles through Sonoma, Space, and Monterey waves
+  wallpaper     - cycles through Sonoma, Space, Monterey, Matrix, and Aerial Beach
   clear         - clears the terminal history log
   linkedin      - opens linkedin profile in new tab
   github        - opens github profile in new tab
