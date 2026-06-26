@@ -1023,21 +1023,7 @@ a.info-value:hover {
   border-color: var(--text-primary);
 }
 
-/* ==========================================================================
-   WINDOW FOOTER
-   ========================================================================== */
 
-.window-footer {
-  background: var(--header-bg);
-  border-top: 1px solid var(--window-border);
-  padding: 12px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  user-select: none;
-}
 
 /* ==========================================================================
    SPOTLIGHT SEARCH MENU OVERLAY (DIALOG)
