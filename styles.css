@@ -652,6 +652,8 @@ a.info-value:hover {
   color: var(--text-primary);
   margin-bottom: 12px;
   display: inline-block;
+  text-decoration: none; /* Prevent underlines for link boxes */
+  cursor: pointer; /* Pointer cursor for links */
   border-radius: 8px; /* Clean, modern rounded corner box */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
