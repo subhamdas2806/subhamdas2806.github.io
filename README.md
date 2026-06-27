@@ -1,4 +1,4 @@
-# Subham Das — Interactive macOS Developer Portfolio
+# Subham Das — Interactive macOS like Developer Portfolio
 
 An interactive, high-fidelity macOS Desktop simulation built using vanilla HTML, CSS, and JavaScript. This portfolio showcases engineering projects, work history, and creative endeavors through a developer-focused monospace terminal layout.
 
