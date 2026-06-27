@@ -160,7 +160,7 @@ body {
 
 .mac-window {
   width: 100%;
-  max-width: 1250px;
+  max-width: 1350px; /* Increased max-width for a wider widescreen panel */
   background: var(--window-bg);
   border: 1px solid var(--window-border);
   border-radius: 12px;
@@ -377,7 +377,7 @@ a.info-value:hover {
    ========================================================================== */
 
 .window-content {
-  padding: 50px;
+  padding: 65px 75px; /* Increased vertical and horizontal padding */
   max-height: calc(100vh - 250px);
   overflow-y: auto;
   background: var(--window-bg);
