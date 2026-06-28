@@ -49,9 +49,9 @@
   --window-border: rgba(0, 0, 0, 0.1);
   --header-bg: #d4d4d6;
   
-  --text-primary: #1d1d1f;
-  --text-secondary: #3c3c40; /* Darker gray for better readability */
-  --text-muted: #636366; /* Darker muted text for high contrast */
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-muted: #222225;
   
   --accent-color: #0071e3;
   --accent-secondary: #0077ed;
@@ -162,7 +162,7 @@ body {
   width: 100%;
   max-width: 1350px; /* Increased max-width for a wider widescreen panel */
   background: var(--window-bg);
-  border: 1px solid var(--window-border);
+  border: none;
   border-radius: 12px;
   box-shadow: var(--shadow-window);
   overflow: hidden;
@@ -216,31 +216,37 @@ body {
   display: inline-block;
   cursor: pointer;
   position: relative;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .dot.close { background-color: #ff5f56; }
 .dot.minimize { background-color: #ffbd2e; }
 .dot.expand { background-color: #27c93f; }
 
-.window-controls:hover .dot::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.4);
+.dot:hover {
+  transform: scale(1.08);
 }
+
+.dot.close:hover {
+  box-shadow: 0 0 8px rgba(255, 95, 86, 0.6);
+}
+
+.dot.minimize:hover {
+  box-shadow: 0 0 8px rgba(255, 189, 46, 0.6);
+}
+
+.dot.expand:hover {
+  box-shadow: 0 0 8px rgba(39, 201, 63, 0.6);
+}
+
+
 
 /* Center Horizontal Pill */
 .window-title-pill {
   width: 280px;
   height: 16px;
   background: rgba(255, 255, 255, 0.06);
-  border-radius: 4px;
+  border-radius: 30px;
   cursor: pointer;
   transition: background 0.2s ease;
   position: absolute;
@@ -323,6 +329,15 @@ body {
 .theme-toggle-btn svg {
   width: 18px;
   height: 18px;
+  display: none; /* Hide both by default and display theme-specific icon */
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+  display: block;
+}
+
+[data-theme="light"] .theme-toggle-btn .moon-icon {
+  display: block;
 }
 
 /* ==========================================================================
@@ -517,7 +532,7 @@ a.info-value:hover {
   font-size: 0.78rem;
   text-decoration: none;
   padding: 6px 14px;
-  border-radius: 8px; /* Matching the project boxes */
+  border-radius: 30px; /* Matching the keyboard hint pill shape */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -551,14 +566,14 @@ a.info-value:hover {
 
 [data-theme="light"] .btn-primary {
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: none;
   color: var(--text-secondary);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .btn-primary:hover {
   background: rgba(255, 255, 255, 0.4);
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
   color: var(--text-primary);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
 }
@@ -581,14 +596,14 @@ a.info-value:hover {
 
 [data-theme="light"] .btn-outline {
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: none;
   color: var(--text-secondary);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.04);
 }
 
 [data-theme="light"] .btn-outline:hover {
   background: rgba(255, 255, 255, 0.4);
-  border-color: rgba(0, 0, 0, 0.1);
+  border-color: transparent;
   color: var(--text-primary);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
 }
@@ -647,14 +662,14 @@ a.info-value:hover {
   border: 1px solid transparent;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 6px 14px;
+  padding: 6px 24px;
   font-size: 0.78rem;
   color: var(--text-primary);
   margin-bottom: 12px;
   display: inline-block;
   text-decoration: none; /* Prevent underlines for link boxes */
   cursor: pointer; /* Pointer cursor for links */
-  border-radius: 8px; /* Clean, modern rounded corner box */
+  border-radius: 30px; /* Pill-shaped */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
               box-shadow 0.25s ease,
@@ -1025,7 +1040,7 @@ a.info-value:hover {
   border: 1px solid transparent;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-radius: 8px; /* Matching buttons and project boxes */
+  border-radius: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s var(--ease-out-back),
               border-color 0.25s ease,
@@ -1264,24 +1279,24 @@ a.info-value:hover {
   position: absolute;
   right: 0;
   bottom: 0;
-  width: 16px;
-  height: 16px;
+  width: 24px; /* Larger grab area for better UX */
+  height: 24px;
   cursor: se-resize;
   z-index: 30;
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 3px;
+  padding: 6px; /* Positioned inside the 12px border-radius boundary to prevent clipping */
   pointer-events: auto;
 }
 
 .window-resize-handle::after {
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 6px; /* Fitter design scale */
+  height: 6px;
   border-right: 2px solid var(--text-secondary);
   border-bottom: 2px solid var(--text-secondary);
-  opacity: 0.3;
+  opacity: 0.35;
   transition: opacity 0.2s ease, border-color 0.2s ease;
 }
 
@@ -1470,12 +1485,13 @@ a.info-value:hover {
 
 .keyboard-hint {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  bottom: 24px;
+  right: 24px;
   background: rgba(25, 25, 28, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 6px 12px;
-  border-radius: 8px;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 30px; /* Pill-shaped like the screenshot */
+  font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-secondary);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -1489,7 +1505,7 @@ a.info-value:hover {
 
 [data-theme="light"] .keyboard-hint {
   background: rgba(255, 255, 255, 0.52);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   color: #111112;
 }
@@ -1838,13 +1854,8 @@ a.info-value:hover {
    INTERACTIVE WINDOW CONTROL GLOWS & SYMBOLS
    ========================================================================== */
 
-.window-controls:hover .dot::after {
-  content: '';
-  display: none !important; /* Hide default dot */
-}
-
-.window-controls:hover .dot {
-  display: flex;
+.dot {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: rgba(0, 0, 0, 0.7);
@@ -1854,15 +1865,15 @@ a.info-value:hover {
   line-height: 1;
 }
 
-.window-controls:hover .dot.close::before {
+.dot.close:hover::before {
   content: '×';
 }
 
-.window-controls:hover .dot.minimize::before {
+.dot.minimize:hover::before {
   content: '−';
 }
 
-.window-controls:hover .dot.expand::before {
+.dot.expand:hover::before {
   content: '+';
 }
 
@@ -2141,6 +2152,7 @@ a.info-value:hover {
   grid-template-columns: 1.25fr 0.75fr;
   min-height: 320px;
   max-height: 400px;
+  overflow: hidden; /* Prevent grid columns from spilling outside dialog content area */
 }
 
 .cmd-menu-left {
@@ -2148,6 +2160,7 @@ a.info-value:hover {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-height: 0; /* Enable correct inner scrolling without grid expanding */
 }
 
 .cmd-menu-list {
@@ -2163,6 +2176,7 @@ a.info-value:hover {
   font-family: var(--font-mono);
   display: flex;
   flex-direction: column;
+  min-height: 0; /* Enable correct inner scrolling and prevent layout overflow */
 }
 
 [data-theme="light"] .cmd-menu-right {
@@ -2316,24 +2330,24 @@ a.info-value:hover {
 /* Sibling window glassmorphism styles */
 .bg-gradient-container.wp-glass ~ .mac-window {
   background: rgba(15, 15, 18, 0.65) !important; /* Dark tinted frosted glass (slightly darker for contrast) */
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border: none !important;
   backdrop-filter: blur(48px) saturate(140%) !important; /* Increased blur for stronger frosted effect */
   -webkit-backdrop-filter: blur(48px) saturate(140%) !important;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.15), 
-              inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
+              inset 0 1px 1px transparent !important;
 }
 
 /* Light mode white-tinted frosted glass */
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window {
   background: rgba(255, 255, 255, 0.52) !important; /* White-tinted frosted glass (slightly more opaque for contrast) */
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border: none !important;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.08), 
-              inset 0 1px 1px rgba(255, 255, 255, 0.25) !important;
+              inset 0 1px 1px transparent !important;
               
   /* Overrides for text color inside the glass window to maximize legibility and saturation */
   --text-primary: #000000 !important;
-  --text-secondary: #111112 !important;
-  --text-muted: #3a3a3c !important;
+  --text-secondary: #000000 !important;
+  --text-muted: #222225 !important;
 }
 
 /* Transparent overlays inside the glass window */
@@ -2347,7 +2361,7 @@ a.info-value:hover {
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .window-header,
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .info-bar,
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .mac-window .window-content {
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(0, 0, 0, 0.1) !important; /* Dark separator lines (opposite color on light theme background) */
 }
 
 .bg-gradient-container.wp-glass ~ .mac-window .stack-category {
@@ -2423,7 +2437,7 @@ a.info-value:hover {
 /* Sibling Keyboard Hint glassmorphism overrides */
 .bg-gradient-container.wp-glass ~ .keyboard-hint {
   background: rgba(15, 15, 18, 0.65) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border: none !important;
   backdrop-filter: blur(48px) saturate(140%) !important;
   -webkit-backdrop-filter: blur(48px) saturate(140%) !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4) !important;
@@ -2431,7 +2445,7 @@ a.info-value:hover {
 
 [data-theme="light"] .bg-gradient-container.wp-glass ~ .keyboard-hint {
   background: rgba(255, 255, 255, 0.52) !important;
-  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  border: none !important;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.15) !important;
   color: #000000 !important;
 }
@@ -2693,6 +2707,56 @@ a.info-value:hover {
 @keyframes bounceWidget {
   0%, 100% { transform: translateX(-50%) translateY(0); }
   50% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Photography Section Social Links */
+.photography-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.photo-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 30px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease,
+              background-color 0.25s ease;
+}
+
+.photo-link-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  border-color: transparent;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+}
+
+.photo-link-btn svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+}
+
+[data-theme="light"] .photo-link-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 
